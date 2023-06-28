@@ -1,2 +1,2 @@
 # Euterpe
-A music generation toolkit
+A music generation toolkit in Octave
