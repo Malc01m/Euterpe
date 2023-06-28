@@ -34,6 +34,7 @@ function audiodata = notename2aud(notes, fa, fs, bpm, wavetype, hrmncs, audiofil
           for j = 1:length(hrmncs)
               noteAudio += sinetone(freq * hrmncs(j), fs, bps * beats(i), 1);
           end
+          noteAudio = ramp(noteAudio, 0.02, fs);
         case 'tri' % WIP
           period = 1/freq;
           noteAudio = [linspace(0, 1, (period / 4)), linspace(1, -1, period / 2), linspace(-1, 0, period / 4)]
