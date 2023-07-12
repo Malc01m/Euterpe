@@ -5,13 +5,8 @@ bpm = 120;
 % Randomly decide a scale
 scalesteps = diatonicScaleSteps(randi(7))
 scaleroot = cell2mat(noteval2notename(randi([-20 5]) * 0.5))
-scaleset = noteset(scalesteps, scaleroot)
-
-upperOctSet = transpose(scaleset, 6);
-lowerOctSet = transpose(scaleset, -6);
-triOctaveSet = [lowerOctSet(1:7) scaleset upperOctSet(2:8)];
-allowedOuterRange = 3;
-nset = triOctaveSet((8 - allowedOuterRange):(15 + allowedOuterRange));
+range = 1:8;
+nset = noteset(scalesteps, scaleroot, range)
 
 rep = 4;
 phr = 3;
@@ -31,8 +26,8 @@ endfor
 
 [sng1; sng2]
 
-audiodata = 0.05 * notename2aud(sng1, fa, fs, bpm);
-audiodata = audiodata + (0.05 * notename2aud(sng2, fa, fs, bpm));
+audiodata = 0.05 * notename2aud(sng1, fa, fs, bpm, 'sine', [3 5]);
+audiodata = audiodata + (0.05 * notename2aud(sng2, fa, fs, bpm, 'sine', [3 5]));
 
 player = audioplayer(audiodata, fs);
 play(player);
