@@ -64,7 +64,7 @@ function audiodata = notename2aud(notes, fa, fs, bpm, wavetype, hrmncs, audiofil
       noteAudio = noteAudio(1:samp);
     endif
 
-    noteAudio = linearfade(noteAudio, round((bps * beats(i)) / 40), fs);
+    noteAudio = linearfade(noteAudio, (bps * beats(i)) / 30, fs);
     audiodata = [audiodata; noteAudio];
   endfor
 endfunction
